@@ -1,0 +1,4 @@
+{
+  "src/name.hx": "src/{%= name %}.hx",
+  "resources/html/name.html": "resources/html/{%= name %}.html"
+}

@@ -31,13 +31,13 @@ module.exports = function(grunt) {
 			globals: {}
 		},
 		concat: {
-			<%= pkg.name %>: {
+			'<%= pkg.name %>': {
 				src: ['resources/js/*.js', 'dist/<%= pkg.name %>.js'],
 				dest: 'dist/<%= pkg.name %>.js'
 			}
 		},
 		min: {
-			<%= pkg.name %>: {
+			'<%= pkg.name %>': {
 				src: ['<banner:meta.banner>', '<config:concat.<%= pkg.name %>.dest>'],
 				dest: 'dist/<%= pkg.name %>.js'
 			}
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
 				//libs:[],
 				//misc:["--js-modern"],
 				output: {
-					<%= pkg.name %>: {
+					'<%= pkg.name %>': {
 						main: '<%= pkg.name %>',
 						output: 'dist/<%= pkg.name %>.js'
 					}

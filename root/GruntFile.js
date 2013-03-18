@@ -31,19 +31,19 @@ module.exports = function(grunt) {
 			globals: {}
 		},
 		concat: {
-			project1: {
-				src: ['resources/js/*.js', 'compiled/<%= pkg.name %>.js'],
+			<%= pkg.name %>: {
+				src: ['resources/js/*.js', 'dist/<%= pkg.name %>.js'],
 				dest: 'dist/<%= pkg.name %>.js'
 			}
 		},
 		min: {
-			project1: {
-				src: ['<banner:meta.banner>', '<config:concat.project1.dest>'],
+			<%= pkg.name %>: {
+				src: ['<banner:meta.banner>', '<config:concat.<%= pkg.name %>.dest>'],
 				dest: 'dist/<%= pkg.name %>.js'
 			}
 		},
 		uglify: {},
-		clean: ["dist/*", "compiled/*"],
+		clean: ["dist/*"],
 		copy: {
 			dist: {
 				files: [
@@ -62,9 +62,9 @@ module.exports = function(grunt) {
 				//libs:[],
 				//misc:["--js-modern"],
 				output: {
-					project1: {
+					<%= pkg.name %>: {
 						main: '<%= pkg.name %>',
-						output: 'compiled/<%= pkg.name %>.js'
+						output: 'dist/<%= pkg.name %>.js'
 					}
 				}
 			}
@@ -78,6 +78,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	
-	grunt.registerTask('hx', ['jshint', 'clean', 'copy:dist', 'haxe:projects', 'concat']);
+	grunt.registerTask('default', ['jshint', 'clean', 'copy:dist', 'haxe:projects', 'concat']);
 
 };

@@ -1,0 +1,4 @@
+-main {%= name %}
+-js dist/{%= name %}.js
+-cp src
+-cp libs

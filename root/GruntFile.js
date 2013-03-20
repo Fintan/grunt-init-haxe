@@ -8,27 +8,10 @@ module.exports = function(grunt) {
 			banner: '/*! Project: <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %>\n' + '* http://PROJECT_WEBSITE/\n' + '* Copyright (c) <%= grunt.template.today("yyyy") %> ' + 'YOUR_NAME; Licensed MIT */'
 		},
 		jshint: {
-		    files: ['GruntFile.js'],
-		    options: {
+			files: ['GruntFile.js'],
+			options: {
 				jshintrc: '.jshintrc'
 			}
-		},
-		jshint: {
-			options: {
-    			curly: true,
-				eqeqeq: true,
-				immed: true,
-				latedef: true,
-				newcap: true,
-				noarg: true,
-				sub: true,
-				undef: true,
-				boss: true,
-				eqnull: true,
-				node: true,
-				es5: true
-			},
-			globals: {}
 		},
 		concat: {
 			'<%= pkg.name %>': {
@@ -46,27 +29,21 @@ module.exports = function(grunt) {
 		clean: ["dist/*"],
 		copy: {
 			dist: {
-				files: [
-					{expand: true, cwd: 'resources/html/', src: ['**'], dest: 'dist/'} // makes all src relative to cwd
-				]
+				files: [{
+					expand: true,
+					cwd: 'resources/html/',
+					src: ['**'],
+					dest: 'dist/'
+				}]
 			}
 		},
-		watch:{
+		watch: {
 			files: 'src/**/*.hx',
 			tasks: ['hx']
 		},
 		haxe: {
-			projects: {
-				main:'',//gets replaced in output
-				classpath: ['src', 'libs'],
-				//libs:[],
-				//misc:["--js-modern"],
-				output: {
-					'<%= pkg.name %>': {
-						main: '<%= pkg.name %>',
-						output: 'dist/<%= pkg.name %>.js'
-					}
-				}
+			project: {
+				hxml: 'build.hxml'
 			}
 		}
 	});
@@ -77,7 +54,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	
-	grunt.registerTask('default', ['jshint', 'clean', 'copy:dist', 'haxe:projects', 'concat']);
+
+	grunt.registerTask('default', ['jshint', 'clean', 'copy:dist', 'haxe:project', 'concat']);
 
 };

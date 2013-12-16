@@ -39,7 +39,7 @@ module.exports = function(grunt) {
 		},
 		watch: {
 			files: 'src/**/*.hx',
-			tasks: ['hx']
+			tasks: ['haxe:project']
 		},
 		haxe: {
 			project: {
